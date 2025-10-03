@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🌤️ Weather Portal</h1>
+      <div class="search">
+        <input type="text" id="cityInput" placeholder="Enter city..." />
+        <button id="searchBtn">🔍 Search</button>
+      </div>
+      <button id="themeToggle">🌙/☀️</button>
+    </header>
+
+    <main>
+      <!-- Current Weather -->
+      <section class="current-weather glass">
+        <h2 id="cityName">--</h2>
+        <p id="dateTime">--</p>
+        <div id="weatherIcon" class="animated-icon"></div>
+        <p id="temperature">--°C</p>
+        <p id="description">--</p>
+        <p id="extra">Humidity: --% | Wind: -- m/s</p>
+      </section>
+
+      <!-- Extra Weather Details -->
+      <section class="details glass">
+        <h2>Weather Details</h2>
+        <div class="detail-grid">
+          <div class="detail-card">Visibility: <span id="visibility">-- km</span></div>
+          <div class="detail-card">Pressure: <span id="pressure">-- hPa</span></div>
+          <div class="detail-card">Dew Point: <span id="dewPoint">--°C</span></div>
+          <div class="detail-card">AQI: <span id="aqi">--</span></div>
+          <div class="detail-card">UV Index: <span id="uv">--</span></div>
+        </div>
+      </section>
+
+      <!-- Sunrise / Sunset -->
+      <section class="sun glass">
+        <h2>Sunrise & Sunset</h2>
+        <div id="sunCycle">
+          <p>🌅 Sunrise: <span id="sunrise">--</span></p>
+          <p>🌇 Sunset: <span id="sunset">--</span></p>
+        </div>
+      </section>
+
+      <!-- Forecast -->
+      <section class="forecast glass">
+        <h2>5-Day Forecast</h2>
+        <div id="forecastCards" class="forecast-cards"></div>
+      </section>
+
+      <!-- Timeline Graph -->
+      <section class="timeline glass">
+        <h2>Weather Timeline</h2>
+        <canvas id="weatherChart"></canvas>
+      </section>
+
+      <!-- India’s Major Cities -->
+      <section class="cities glass">
+        <h2>India’s Major Cities</h2>
+        <div id="indiaCities" class="city-grid"></div>
+      </section>
+
+      <!-- Weather Map -->
+      <section class="map glass">
+        <h2>Weather Map</h2>
+        <iframe
+          id="weatherMap"
+          src="https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=20.5937&lon=78.9629&zoom=4"
+          width="100%" height="400"
+          frameborder="0">
+        </iframe>
+      </section>
+    </main>
+  </div>
+
+  <div id="background-container"></div>
+
+  <!-- Ambient sounds -->
+  <audio id="rainAudio" loop src="rain-loop.mp3"></audio>
+  <audio id="thunderAudio" loop src="thunder.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

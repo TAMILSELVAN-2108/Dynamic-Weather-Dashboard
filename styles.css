@@ -1,0 +1,255 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  transition: background 1s ease, color 0.5s ease;
+  color: #fff;
+}
+
+#background-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+#background-container video {
+  position: absolute;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+#background-container video.active {
+  opacity: 1;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 25px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color:#ddd;
+}
+
+/* Center search */
+.search {
+  margin: 25px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search input {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 1rem;
+  min-width: 250px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+.search button {
+  padding: 12px 20px;
+  margin-left: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #6a5acd, #836fff);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(106,90,205,0.4);
+  transform: perspective(500px) translateZ(0);
+}
+.search button:hover {
+  background: linear-gradient(145deg, #7b68ee, #9370db);
+  transform: perspective(500px) translateZ(20px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(123,104,238,0.6);
+}
+
+/* Glassmorphism cards */
+.glass {
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 900px;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: transform 0.4s ease;
+}
+.glass:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Current weather */
+#cityName {
+font-size: 2.2rem;
+  margin: 10px 0;
+  background: linear-gradient(
+    90deg,
+    #ff9a9e,
+    #fad0c4,
+    #fbc2eb,
+    #a18cd1
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Works cross-browser */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+#dateTime {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* Forecast */
+.forecast-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+.forecast-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.forecast-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+}
+
+/* Timeline chart container */
+.timeline {
+  padding: 30px;
+}
+
+/* Slide-in animation for forecast cards */
+.forecast-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.6s forwards;
+}
+.forecast-card:nth-child(1) { animation-delay: 0.2s; }
+.forecast-card:nth-child(2) { animation-delay: 0.4s; }
+.forecast-card:nth-child(3) { animation-delay: 0.6s; }
+.forecast-card:nth-child(4) { animation-delay: 0.8s; }
+.forecast-card:nth-child(5) { animation-delay: 1s; }
+
+@keyframes slideIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* India cities grid */
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+}
+.city-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.city-card:hover {
+  transform: scale(1.05);
+}
+
+/* Sun animation */
+#sunCycle {
+  font-size: 1rem;
+  animation: pulse 3s infinite alternate;
+}
+@keyframes pulse {
+  from { opacity: 0.6; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+
+/* Theme toggle */
+#themeToggle {
+  position: absolute;
+  top: 20px; right: 20px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  background: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+/* Global transition for smooth fade */
+body, .glass, .forecast-card, .city-card {
+  transition: background 0.6s ease, color 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  background: #111;
+  color: #fff;
+}
+
+body.dark-theme .glass,
+body.dark-theme .forecast-card,
+body.dark-theme .city-card {
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+/* Light Theme */
+body.light-theme {
+  background: #f0f0f0;
+  color: #111;
+}
+
+body.light-theme .glass,
+body.light-theme .forecast-card,
+body.light-theme .city-card {
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Toggle button base */
+#themeToggle {
+  position: absolute;
+  top: 20px; right: 20px;
+  padding: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: transform 0.4s ease, background 0.6s ease, color 0.6s ease;
+}
+
+/* Hover bounce */
+#themeToggle:hover {
+  transform: rotate(20deg) scale(1.15);
+}
+
+/* Dark = Moon */
+#themeToggle.moon {
+  background: linear-gradient(145deg, #2c3e50, #34495e);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+/* Light = Sun */
+#themeToggle.sun {
+  background: linear-gradient(145deg, #f9d71c, #f39c12);
+  color: #222;
+  box-shadow: 0 4px 15px rgba(255,223,0,0.6);
+}
+
